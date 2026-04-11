@@ -15,48 +15,48 @@ interface Props {
 }
 
 export default function ProjectModal({ project, onClose }: Props) {
-  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  // Lock scroll
   useEffect(() => {
-    if (project) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = ''
+    document.body.style.overflow = project ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [project])
 
   return (
     <AnimatePresence>
       {project && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            key="backdrop"
-            className="fixed inset-0 z-[100] bg-black/75"
-            style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+        /* Full-screen container — backdrop + centering */
+        <motion.div
+          key="modal-root"
+          className="fixed inset-0 z-[100] flex items-end md:items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          {/* Backdrop — click to close */}
+          <div
+            className="absolute inset-0"
+            style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', backgroundColor: 'rgba(0,0,0,0.75)' }}
             onClick={onClose}
           />
 
-          {/* Modal */}
+          {/* Modal panel */}
           <motion.div
-            key="modal"
+            key="modal-panel"
             role="dialog"
             aria-modal="true"
             aria-label={project.title}
-            className="fixed inset-x-4 bottom-0 md:inset-x-auto md:left-1/2 md:top-1/2 md:w-full md:max-w-2xl z-[101] bg-brand-surface border border-brand-border rounded-t-3xl md:rounded-2xl overflow-hidden"
-            style={{ '--tw-translate-x': '-50%', '--tw-translate-y': '-50%' } as React.CSSProperties}
-            initial={{ opacity: 0, y: '100%' }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '100%' }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-full md:max-w-2xl md:mx-4 bg-brand-surface border border-brand-border overflow-hidden rounded-t-3xl md:rounded-2xl"
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0,  scale: 1 }}
+            exit={{    opacity: 0, y: 24,  scale: 0.97 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            onClick={e => e.stopPropagation()}
           >
             {/* Image */}
             {project.image && (
@@ -75,10 +75,9 @@ export default function ProjectModal({ project, onClose }: Props) {
 
             {/* Content */}
             <div className="p-6 md:p-8">
-              {/* Header row */}
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-1">
                     <h2 className="display-font text-2xl font-bold text-white">{project.title}</h2>
                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${STATUS_STYLES[project.status]}`}>
                       {project.status}
@@ -97,7 +96,6 @@ export default function ProjectModal({ project, onClose }: Props) {
 
               <p className="text-brand-muted leading-relaxed mb-6">{project.description}</p>
 
-              {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tags.map(tag => (
                   <span key={tag} className="px-2.5 py-1 rounded-lg bg-brand-bg border border-brand-border text-brand-muted text-xs font-mono">
@@ -106,7 +104,6 @@ export default function ProjectModal({ project, onClose }: Props) {
                 ))}
               </div>
 
-              {/* Actions */}
               <div className="flex gap-3">
                 {project.link && project.link !== '#' && (
                   <a
@@ -127,7 +124,7 @@ export default function ProjectModal({ project, onClose }: Props) {
               </div>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   )

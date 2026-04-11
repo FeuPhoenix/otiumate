@@ -13,6 +13,7 @@ import Preloader from './components/Preloader'
 import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 import BackToTop from './components/BackToTop'
+import Grain from './components/Grain'
 
 const SECTIONS = ['hero', 'about', 'work', 'team', 'stack', 'contact'] as const
 type SectionId = typeof SECTIONS[number]
@@ -48,6 +49,7 @@ export default function App() {
 
       {loaded && (
         <>
+          <Grain />
           <CustomCursor />
           <ScrollProgress />
 

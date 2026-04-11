@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | Otiumate</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #090909;
+      --surface: #111111;
+      --border:  #1E1E1E;
+      --primary: #2563EB;
+      --accent:  #60A5FA;
+      --muted:   #6B7280;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grain {
+      position: fixed;
+      inset: -150%;
+      width: 400%;
+      height: 400%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      animation: grain 8s steps(10) infinite;
+    }
+
+    @keyframes grain {
+      0%   { transform: translate(0,0) }
+      10%  { transform: translate(-5%,-10%) }
+      20%  { transform: translate(-15%,5%) }
+      30%  { transform: translate(7%,-25%) }
+      40%  { transform: translate(-5%,25%) }
+      50%  { transform: translate(-15%,10%) }
+      60%  { transform: translate(15%,0%) }
+      70%  { transform: translate(0%,15%) }
+      80%  { transform: translate(3%,35%) }
+      90%  { transform: translate(-10%,10%) }
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 3rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-family: 'Clash Display', Inter, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-text span:first-child { color: #fff; }
+    .logo-text span:last-child  { color: var(--primary); }
+
+    .code {
+      font-family: 'Clash Display', Inter, sans-serif;
+      font-size: clamp(7rem, 22vw, 14rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #fff 0%, #60a5fa 55%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Clash Display', Inter, sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.75rem;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn:hover {
+      background: #3b82f6;
+      transform: translateY(-1px);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem auto;
+    }
+
+    .footnote {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      opacity: 0.5;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page">
+    <a href="/" class="logo" aria-label="Back to Otiumate home">
+      <img src="/logo.png" alt="Otiumate" onerror="this.style.display='none'" />
+      <span class="logo-text">
+        <span>Otiu</span><span>mate</span>
+      </span>
+    </a>
+
+    <p class="label">Error 404</p>
+    <div class="code" aria-hidden="true">404</div>
+
+    <h1>This page doesn't exist</h1>
+    <p>Looks like you've wandered into uncharted territory. The page you're looking for has moved, been removed, or never existed.</p>
+
+    <a href="/" class="btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Back to Home
+    </a>
+
+    <div class="divider"></div>
+    <p class="footnote">otiumate.com</p>
+  </div>
+
+  <script>
+    /* Minimal particle canvas — same system as Hero, stripped down */
+    (function () {
+      const canvas = document.getElementById('c')
+      const ctx = canvas.getContext('2d')
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const isMobile = window.innerWidth < 768
+
+      let W, H, particles = []
+      const COUNT = isMobile ? 35 : 80
+      const DIST  = isMobile ? 100 : 130
+      const SPEED = 0.4
+
+      function resize() {
+        W = canvas.width  = window.innerWidth  * dpr
+        H = canvas.height = window.innerHeight * dpr
+        canvas.style.width  = window.innerWidth  + 'px'
+        canvas.style.height = window.innerHeight + 'px'
+        ctx.scale(dpr, dpr)
+        init()
+      }
+
+      function init() {
+        particles = Array.from({ length: COUNT }, () => ({
+          x:  Math.random() * window.innerWidth,
+          y:  Math.random() * window.innerHeight,
+          vx: (Math.random() - 0.5) * SPEED,
+          vy: (Math.random() - 0.5) * SPEED,
+          r:  Math.random() * 1.5 + 0.5,
+        }))
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+
+        /* connections */
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x
+            const dy = particles[i].y - particles[j].y
+            const d  = Math.sqrt(dx*dx + dy*dy)
+            if (d < DIST) {
+              ctx.beginPath()
+              ctx.moveTo(particles[i].x, particles[i].y)
+              ctx.lineTo(particles[j].x, particles[j].y)
+              ctx.strokeStyle = `rgba(96,165,250,${(1 - d / DIST) * 0.25})`
+              ctx.lineWidth = 0.6
+              ctx.stroke()
+            }
+          }
+        }
+
+        /* dots */
+        particles.forEach(p => {
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+          ctx.fillStyle = 'rgba(96,165,250,0.55)'
+          ctx.fill()
+
+          p.x += p.vx
+          p.y += p.vy
+          if (p.x < 0 || p.x > window.innerWidth)  p.vx *= -1
+          if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1
+        })
+
+        requestAnimationFrame(draw)
+      }
+
+      window.addEventListener('resize', resize, { passive: true })
+      resize()
+      draw()
+    })()
+  </script>
+</body>
+</html>

@@ -5,18 +5,15 @@ import { useInView } from '../hooks/useInView'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-// TODO: Replace with real contact email and social links
 const CONTACT_EMAIL = 'otiumate@gmail.com'
 
-// TODO: Replace with your Formspree form ID — sign up free at formspree.io
-// e.g. 'https://formspree.io/f/xpwzgkla'
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xreonqnd'
 
 const SOCIALS = [
-  { label: 'GitHub',    href: '#', icon: Github    },
-  { label: 'LinkedIn',  href: '#', icon: Linkedin  },
-  { label: 'Twitter',   href: '#', icon: Twitter   },
-  { label: 'Instagram', href: '#', icon: Instagram },
+  { label: 'GitHub',    href: 'https://github.com/FeuPhoenix',                              icon: Github    },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/otiumate',                  icon: Linkedin  },
+  { label: 'Twitter',   href: 'https://twitter.com/otiumate',                               icon: Twitter   },
+  { label: 'Instagram', href: 'https://www.instagram.com/otiumate/',                        icon: Instagram },
 ]
 
 export default function Contact() {

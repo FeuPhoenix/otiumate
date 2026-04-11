@@ -9,10 +9,10 @@ const NAV_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub',    href: '#', icon: Github    },
-  { label: 'LinkedIn',  href: '#', icon: Linkedin  },
-  { label: 'Twitter',   href: '#', icon: Twitter   },
-  { label: 'Instagram', href: '#', icon: Instagram },
+  { label: 'GitHub',    href: 'https://github.com/FeuPhoenix',                              icon: Github    },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/otiumate',                  icon: Linkedin  },
+  { label: 'Twitter',   href: 'https://twitter.com/otiumate',                               icon: Twitter   },
+  { label: 'Instagram', href: 'https://www.instagram.com/otiumate/',                        icon: Instagram },
 ]
 
 export default function Footer() {

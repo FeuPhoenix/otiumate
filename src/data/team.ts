@@ -12,55 +12,65 @@ export interface TeamMember {
   }
 }
 
-// TODO: Replace placeholder data with real team members
+// TODO: Fill in full names, roles, bios, details and social links
 export const team: TeamMember[] = [
   {
-    id: 'member-1',
-    name: 'Alex Carter',
-    role: 'Co-Founder & CEO',
-    bio: 'Visionary builder with a background in product design and growth strategy. Alex has spent the last 6 years obsessing over how technology can remove friction from everyday life. When not whiteboarding ideas, you\'ll find them running trails or reading dense philosophy.',
-    photo: 'https://picsum.photos/seed/team1/800/1000',
-    details: ['Based in London, UK', '6+ years in product', 'Philosophy enthusiast'],
-    socials: {
-      linkedin: '#',
-      github: '#',
-      twitter: '#',
-    },
-  },
-  {
-    id: 'member-2',
-    name: 'Jordan Lee',
-    role: 'Co-Founder & CTO',
-    bio: 'Full-stack engineer with a deep love for systems thinking and elegant architecture. Jordan previously led engineering at two early-stage startups and believes the best code is the kind you never have to explain. Avid contributor to open-source tooling.',
-    photo: 'https://picsum.photos/seed/team2/800/1000',
-    details: ['Based in Berlin, Germany', 'Full-stack architect', 'Open-source contributor'],
-    socials: {
-      linkedin: '#',
-      github: '#',
-    },
-  },
-  {
-    id: 'member-3',
-    name: 'Sam Rivera',
+    id: 'member-amr',
+    name: 'Amr',
     role: 'Head of Design',
-    bio: 'Designer who thinks in systems, not screens. Sam brings a motion-first approach to interface design, ensuring every interaction feels alive and intentional. Former design lead at a Series B fintech. Perpetual sketchbook carrier.',
-    photo: 'https://picsum.photos/seed/team3/800/1000',
-    details: ['Based in Barcelona, Spain', 'Motion-first design', 'Ex-fintech design lead'],
+    bio: 'Visionary builder with a passion for turning ambitious ideas into real products. Obsessed with the intersection of design, technology, and human behaviour. Always thinking about what comes next.',
+    photo: '/team-amr.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/amr-eldeeb-cs/',
+      github: 'https://github.com/FeuPhoenix',
+    },
+  },
+  {
+    id: 'member-beme',
+    name: 'Beme',
+    role: 'Co-Founder & CTO',
+    bio: 'Full-stack engineer who loves clean architecture and elegant solutions. Believes great code is invisible — it just works. Brings systems thinking to every problem.',
+    photo: '/team-beme.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
+    socials: {
+      linkedin: '#',
+      github: '#',
+    },
+  },
+  {
+    id: 'member-joe',
+    name: 'Joe',
+    role: 'Head of Design',
+    bio: 'Designer with a motion-first philosophy. Every screen should feel alive and intentional. Brings a sharp eye for detail and a deep understanding of what makes interfaces feel premium.',
+    photo: '/team-joe.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
     socials: {
       linkedin: '#',
       twitter: '#',
     },
   },
   {
-    id: 'member-4',
-    name: 'Morgan Kim',
-    role: 'Head of Growth',
-    bio: 'Data-driven strategist with a talent for finding product-market fit signals before everyone else does. Morgan has scaled two B2B products from zero to meaningful ARR and believes growth is just good storytelling backed by numbers.',
-    photo: 'https://picsum.photos/seed/team4/800/1000',
-    details: ['Based in Toronto, Canada', 'B2B growth specialist', 'Storyteller + analyst'],
+    id: 'member-kesh',
+    name: 'Kesh',
+    role: 'Head of Technical',
+    bio: 'Product strategist who thrives at the crossroads of user needs and business goals. Turns fuzzy problems into sharp roadmaps. Passionate about building things people actually want to use.',
+    photo: '/team-kesh.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
     socials: {
-      linkedin: '#',
-      twitter: '#',
+      linkedin: 'https://www.linkedin.com/in/ahmed-el-keshawy/',
+      github: 'https://github.com/Ahmed-ELKeshawy',
+    },
+  },
+  {
+    id: 'member-seif',
+    name: 'Seif',
+    role: 'CEO & Co-Founder',
+    bio: 'Growth strategist with a talent for finding what moves the needle. Combines data with storytelling to build audiences and drive traction. Believes the best growth comes from genuinely great products.',
+    photo: '/team-seif.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/seifeldeen-abdelgawad-25257b213/',
     },
   },
 ]
