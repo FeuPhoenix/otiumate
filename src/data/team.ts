@@ -73,4 +73,16 @@ export const team: TeamMember[] = [
       linkedin: 'https://www.linkedin.com/in/seifeldeen-abdelgawad-25257b213/',
     },
   },
+  {
+    id: 'member-mokhles',
+    name: 'Mokhles',
+    role: 'TODO: Role',
+    bio: 'TODO: Bio',
+    photo: '/team-mokhles.png',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
+    socials: {
+      linkedin: '#',
+      github: '#',
+    },
+  },
 ]
