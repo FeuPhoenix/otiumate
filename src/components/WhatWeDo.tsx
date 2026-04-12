@@ -8,7 +8,7 @@ const capabilities = [
     id: 'strategy',
     icon: Lightbulb,
     title: 'Product Strategy',
-    description: 'We turn fuzzy ideas into sharp product visions. From market positioning to roadmap prioritization — we think before we build.',
+    description: 'We don\'t just give you an AI tool — we give your business a new field of play. We identify where the real leverage is and build the strategy to capture it.',
     span: 2,
   },
   {

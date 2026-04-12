@@ -4,8 +4,8 @@ import { ChevronDown } from 'lucide-react'
 import { useParticles } from '../hooks/useParticles'
 
 const NAME = 'Otiumate'
-const TAGLINE_LINE1 = 'Where great ideas'
-const TAGLINE_LINE2 = 'become great products.'
+const TAGLINE_LINE1 = 'Where friction'
+const TAGLINE_LINE2 = 'becomes opportunity.'
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -84,7 +84,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           <span className="w-4 h-px bg-brand-primary inline-block" />
-          Building the future
+          The next face of AI in Egypt
           <span className="w-4 h-px bg-brand-primary inline-block" />
         </motion.p>
 

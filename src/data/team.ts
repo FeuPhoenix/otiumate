@@ -63,10 +63,22 @@ export const team: TeamMember[] = [
     },
   },
   {
+    id: 'member-mokhles',
+    name: 'Mokhles',
+    role: 'TODO: Role',
+    bio: 'Dedicated team member who brings energy and focus to every project. Committed to building products that make a real difference.',
+    photo: '/team-mokhles.jpeg',
+    details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
+    socials: {
+      linkedin: '#',
+      github: '#',
+    },
+  },
+  {
     id: 'member-seif',
     name: 'Seif',
     role: 'CEO & Co-Founder',
-    bio: 'Growth strategist with a talent for finding what moves the needle. Combines data with storytelling to build audiences and drive traction. Believes the best growth comes from genuinely great products.',
+    bio: 'Mechanical engineering graduate from AUC with a restless love for entrepreneurship, storytelling, and building ideas where technical rigor meets creative vision. I saw how AI was changing everything — and how many young people were excited, confused, and stuck, not knowing how to harness it. So I decided to build the kind of opportunity for others that AI created for me.\n\nWith no big money, no famous last name, and no ready-made blueprint, I started this with a dream and a team of people who think the same way but bring skills I don\'t have.\n\nMy goal is simple: to enable everyone who feels behind, and to help Egypt achieve its goal of becoming an AI and tech hub for the region — by building tools that put real power into people\'s hands.',
     photo: '/team-seif.png',
     details: ['TODO: Location', 'TODO: Years of experience', 'TODO: Fun fact'],
     socials: {

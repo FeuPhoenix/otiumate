@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import WhatWeDo from './components/WhatWeDo'
+import Reel from './components/Reel'
 import Projects from './components/Projects'
 import TeamSlideshow from './components/TeamSlideshow'
 import Testimonials from './components/Testimonials'
@@ -62,6 +63,7 @@ export default function App() {
               <section id="about" ref={el => registerSection('about', el)}>
                 <About />
               </section>
+              <Reel />
               <section id="work" ref={el => registerSection('work', el)}>
                 <WhatWeDo />
                 <Projects />

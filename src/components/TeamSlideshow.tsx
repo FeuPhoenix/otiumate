@@ -157,7 +157,7 @@ export default function TeamSlideshow() {
                   {member.role}
                 </motion.p>
                 <motion.p variants={item} className="text-white/70 text-sm leading-relaxed mb-5 line-clamp-3">
-                  {member.bio}
+                  {member.bio.split('\n\n')[0]}
                 </motion.p>
 
                 <motion.div variants={item} className="flex items-center justify-between">
@@ -254,9 +254,11 @@ export default function TeamSlideshow() {
                 <motion.p variants={item} className="font-mono text-brand-primary text-sm mb-6 tracking-wide">
                   {member.role}
                 </motion.p>
-                <motion.p variants={item} className="text-brand-muted leading-relaxed mb-8 text-base">
-                  {member.bio}
-                </motion.p>
+                <motion.div variants={item} className="space-y-4 text-brand-muted leading-relaxed mb-8 text-base">
+                  {member.bio.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </motion.div>
 
                 <motion.div variants={item} className="flex flex-wrap gap-2 mb-8">
                   {member.details.map(d => (

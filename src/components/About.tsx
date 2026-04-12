@@ -2,19 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 
-// TODO: Replace with real mission, story, and stats
-const MISSION = 'We build tools that give people their time back.'
+const MISSION = 'We don\'t just give you a tool. We give your business a new field of play.'
 
 const STORY = [
-  'Otiumate was born out of a simple frustration: the tools meant to make us productive were making us busier. We saw a gap between how people actually work and what the software industry was building for them.',
-  'So we started from scratch. We obsessed over the moments where friction appears — the micro-decisions, the context switches, the cognitive overhead — and built a system designed to quietly absorb all of it.',
-  'We\'re a small team with an outsized ambition: to make focused, meaningful work the default, not the exception.',
+  'We saw new tools emerging and ambitious businesses — exciting ones — wanting to ride the wave, but unsure how to enter. And in that gap, we saw something we could give people: opportunities.',
+  'Our opportunity is to identify and facilitate you chasing yours. We don\'t build a business — we build an environment where anyone can find a solution to their problems. We simply formalized the process so that access to opportunity isn\'t reserved for a select few.',
+  'We study your friction through data analysis, in-depth research, and close collaboration with your teams — to locate growth opportunities and innovative solutions that save you money, time, and effort. So you can focus on the business side of business.',
 ]
 
 const STATS = [
-  { value: 3,    suffix: '+', label: 'Products Shipped' },
-  { value: 12,   suffix: 'k', label: 'Beta Users'       },
-  { value: 2024, suffix: '',  label: 'Founded'           },
+  { value: 3,   suffix: '+', label: 'Products Shipped'  },
+  { value: 12,  suffix: 'k', label: 'Beta Users'        },
+  { value: 200, suffix: '+', label: 'Hours Saved'        },
 ]
 
 function CountUp({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {

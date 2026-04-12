@@ -117,7 +117,7 @@ function ProjectCard({
       style={{ borderColor: hovered ? 'rgba(37,99,235,0.4)' : undefined }}
       transition={{ borderColor: { duration: 0.2 } }}
     >
-      {/* Image */}
+      {/* Image / Preview */}
       <div className="relative aspect-[16/10] overflow-hidden">
         {project.image ? (
           <motion.img

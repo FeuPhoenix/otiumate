@@ -1,6 +1,40 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+function EgyptTime() {
+  const [time, setTime] = useState('')
+  const [awake, setAwake] = useState(false)
+
+  useEffect(() => {
+    const update = () => {
+      const t = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Africa/Cairo',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+      setTime(t)
+      const h = parseInt(t.split(':')[0])
+      setAwake(h >= 9 && h < 23)
+    }
+    update()
+    const id = setInterval(update, 30000)
+    return () => clearInterval(id)
+  }, [])
+
+  if (!time) return null
+
+  return (
+    <div className="flex items-center gap-2 font-mono text-xs text-brand-muted border border-brand-border rounded-full px-3 py-1.5">
+      <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${awake ? 'bg-emerald-400 animate-pulse' : 'bg-red-400/70'}`} />
+      <span>Cairo {time}</span>
+      <span className={awake ? 'text-emerald-400' : 'text-red-400/70'}>
+        {awake ? '· online' : '· offline'}
+      </span>
+    </div>
+  )
+}
+
 interface NavbarProps {
   activeSection: string
 }
@@ -67,6 +101,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 {link.label}
               </a>
             ))}
+            <EgyptTime />
             <a
               href="#contact"
               className="text-sm px-4 py-2 rounded-full bg-brand-primary text-white hover:bg-blue-500 transition-colors duration-200"

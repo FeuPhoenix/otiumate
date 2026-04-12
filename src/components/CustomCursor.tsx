@@ -23,6 +23,10 @@ export default function CustomCursor() {
   const ringX = useSpring(mouseX, { stiffness: 180, damping: 22, mass: 0.3 })
   const ringY = useSpring(mouseY, { stiffness: 180, damping: 22, mass: 0.3 })
 
+  // Spotlight trails far behind
+  const spotX = useSpring(mouseX, { stiffness: 60, damping: 18, mass: 1 })
+  const spotY = useSpring(mouseY, { stiffness: 60, damping: 18, mass: 1 })
+
   useEffect(() => {
     if (isTouchDevice.current) return
 
@@ -80,6 +84,21 @@ export default function CustomCursor() {
 
   return (
     <>
+      {/* Spotlight trailer */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+        style={{ x: spotX, y: spotY, translateX: '-50%', translateY: '-50%' }}
+        animate={{ opacity: visible ? 1 : 0 }}
+        transition={{ opacity: { duration: 0.4 } }}
+      >
+        <div style={{
+          width: 380,
+          height: 380,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(37,99,235,0.10) 0%, rgba(37,99,235,0.04) 40%, transparent 70%)',
+        }} />
+      </motion.div>
+
       {/* Outer ring */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[99999]"
