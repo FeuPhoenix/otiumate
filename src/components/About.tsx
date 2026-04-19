@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 
@@ -16,38 +15,10 @@ const STATS = [
   { label: 'Hours Saved'      },
 ]
 
-function CountUp({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
-  const [count, setCount] = useState(0)
-  const rafRef = useRef<number>(0)
-
-  useEffect(() => {
-    if (!active) return
-    const start = performance.now()
-    const duration = 1600
-
-    const tick = (now: number) => {
-      const elapsed = now - start
-      const progress = Math.min(elapsed / duration, 1)
-      // ease out quart
-      const eased = 1 - Math.pow(1 - progress, 4)
-      setCount(Math.floor(eased * target))
-      if (progress < 1) rafRef.current = requestAnimationFrame(tick)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [active, target])
-
-  return (
-    <span>
-      {count}{suffix}
-    </span>
-  )
-}
 
 export default function About() {
   const [containerRef, inView] = useInView<HTMLDivElement>({ threshold: 0.1 })
-  const [statsRef, statsInView] = useInView<HTMLDivElement>({ threshold: 0.3 })
+  const [statsRef] = useInView<HTMLDivElement>({ threshold: 0.3 })
 
   const fadeLeft = {
     hidden:  { opacity: 0, x: -40 },
@@ -118,7 +89,7 @@ export default function About() {
                   custom={i}
                   variants={fadeUp}
                   initial="hidden"
-                  animate={statsInView ? 'visible' : 'hidden'}
+                  animate={inView ? 'visible' : 'hidden'}
                 >
                   <p className="display-font text-5xl lg:text-6xl font-bold text-brand-primary mb-2">
                     —
