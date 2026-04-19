@@ -71,7 +71,7 @@ export default function App() {
               <section id="team" ref={el => registerSection('team', el)}>
                 <TeamSlideshow />
               </section>
-              <Testimonials />
+              {/* <Testimonials /> */}
               <section id="stack" ref={el => registerSection('stack', el)}>
                 <TechStack />
               </section>

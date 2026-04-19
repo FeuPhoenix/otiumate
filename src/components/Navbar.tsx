@@ -93,7 +93,9 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 key={link.href}
                 href={link.href}
                 className={`text-sm transition-colors duration-200 ${
-                  isActive(link.href)
+                  link.label === 'Contact'
+                    ? 'px-4 py-2 rounded-full bg-brand-primary text-white hover:bg-blue-500'
+                    : isActive(link.href)
                     ? 'text-brand-primary'
                     : 'text-brand-muted hover:text-white'
                 }`}
@@ -102,12 +104,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
               </a>
             ))}
             <EgyptTime />
-            <a
-              href="#contact"
-              className="text-sm px-4 py-2 rounded-full bg-brand-primary text-white hover:bg-blue-500 transition-colors duration-200"
-            >
-              Let's Talk
-            </a>
           </div>
 
           {/* Hamburger */}
@@ -148,22 +144,23 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 + 0.1 }}
-                className="display-font text-3xl font-semibold text-white hover:text-brand-accent transition-colors"
+                className={
+                  link.label === 'Contact'
+                    ? 'display-font px-8 py-3 rounded-full bg-brand-primary text-white text-3xl font-semibold hover:bg-blue-500 transition-colors mt-2'
+                    : 'display-font text-3xl font-semibold text-white hover:text-brand-accent transition-colors'
+                }
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </motion.a>
             ))}
-            <motion.a
-              href="#contact"
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mt-4 px-8 py-3 rounded-full bg-brand-primary text-white text-lg font-medium hover:bg-blue-500 transition-colors"
-              onClick={() => setMenuOpen(false)}
             >
-              Let's Talk
-            </motion.a>
+              <EgyptTime />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
