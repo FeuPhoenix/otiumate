@@ -5,15 +5,15 @@ import { useInView } from '../hooks/useInView'
 const MISSION = 'We don\'t just give you a tool. We give your business a new field of play.'
 
 const STORY = [
-  'We saw new tools emerging and ambitious businesses — exciting ones — wanting to ride the wave, but unsure how to enter. And in that gap, we saw something we could give people: opportunities.',
-  'Our opportunity is to identify and facilitate you chasing yours. We don\'t build a business — we build an environment where anyone can find a solution to their problems. We simply formalized the process so that access to opportunity isn\'t reserved for a select few.',
-  'We study your friction through data analysis, in-depth research, and close collaboration with your teams — to locate growth opportunities and innovative solutions that save you money, time, and effort. So you can focus on the business side of business.',
+  'Businesses today see what AI can do — but building the right product takes technical depth most teams don\'t have. That gap is where we live.',
+  'Otiumate is an AI automation and products studio. We study your industry, spot what AI can unlock — whether that\'s eliminating a bottleneck or opening a market you haven\'t touched yet — and build the product that gets you there.',
+  'So you can focus on the business side of business.',
 ]
 
 const STATS = [
-  { value: 3,   suffix: '+', label: 'Products Shipped'  },
-  { value: 12,  suffix: 'k', label: 'Beta Users'        },
-  { value: 200, suffix: '+', label: 'Hours Saved'        },
+  { label: 'Products Shipped' },
+  { label: 'Beta Users'       },
+  { label: 'Hours Saved'      },
 ]
 
 function CountUp({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
@@ -120,10 +120,8 @@ export default function About() {
                   initial="hidden"
                   animate={statsInView ? 'visible' : 'hidden'}
                 >
-                  <p
-                    className="display-font text-5xl lg:text-6xl font-bold text-brand-primary mb-2"
-                  >
-                    <CountUp target={stat.value} suffix={stat.suffix} active={statsInView} />
+                  <p className="display-font text-5xl lg:text-6xl font-bold text-brand-primary mb-2">
+                    —
                   </p>
                   <p className="section-label">{stat.label}</p>
                 </motion.div>

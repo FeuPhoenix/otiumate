@@ -19,7 +19,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-brand-border bg-brand-bg">
+    <footer className="border-t border-brand-border bg-brand-bg relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 mb-12">
           {/* Logo + tagline */}
@@ -90,6 +90,16 @@ export default function Footer() {
             Built with React & Vite ✦
           </p>
         </div>
+      </div>
+
+      {/* Cat mascot — peeking from bottom right */}
+      <div className="absolute bottom-0 right-8 w-28 pointer-events-none select-none" aria-hidden="true">
+        <img
+          src="/cat-mascot.jpeg"
+          alt="Otiumate mascot"
+          className="w-full object-contain object-bottom"
+          style={{ maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)' }}
+        />
       </div>
     </footer>
   )

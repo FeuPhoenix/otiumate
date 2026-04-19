@@ -36,14 +36,14 @@ const capabilities = [
     id: 'ai',
     icon: BrainCircuit,
     title: 'AI Integration',
-    description: 'We embed intelligence where it matters — not as a feature, but as infrastructure that removes friction.',
+    description: 'Computer vision, lead generation, automation, API, intelligent agents — we architect the AI layer around your specific problem, not a generic solution.',
     span: 1,
   },
   {
     id: 'research',
     icon: LineChart,
-    title: 'Research & Insights',
-    description: 'Deep user research and data analysis that grounds every decision in what actually matters to real people.',
+    title: 'Business Consulting',
+    description: 'From market entry to operational management — we don\'t just build the product, we help you run it.',
     span: 2,
   },
 ]
@@ -71,12 +71,15 @@ export default function WhatWeDo() {
         >
           <p className="section-label mb-4">03 / What We Do</p>
           <h2
-            className="display-font font-bold text-white"
+            className="display-font font-bold text-white mb-4"
             style={{ fontSize: 'var(--text-section)' }}
           >
             Built for the{' '}
             <span className="text-gradient-blue">ambitious.</span>
           </h2>
+          <p className="text-brand-muted text-base leading-relaxed max-w-2xl">
+            We bring the full stack — strategy, AI, design, and development — and structure the engagement around what your business actually needs.
+          </p>
         </motion.div>
 
         {/* Bento grid */}

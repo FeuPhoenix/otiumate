@@ -4,8 +4,8 @@ import { ChevronDown } from 'lucide-react'
 import { useParticles } from '../hooks/useParticles'
 
 const NAME = 'Otiumate'
-const TAGLINE_LINE1 = 'Where friction'
-const TAGLINE_LINE2 = 'becomes opportunity.'
+const TAGLINE_LINE1 = 'Turn AI potential'
+const TAGLINE_LINE2 = 'into real products.'
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
