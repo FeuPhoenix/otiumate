@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
+import { trackReelPlay } from '../lib/analytics'
 
 export default function Reel() {
   const [ref, inView] = useInView<HTMLDivElement>({ threshold: 0.3 })
@@ -12,7 +13,7 @@ export default function Reel() {
   const togglePlay = () => {
     const v = videoRef.current
     if (!v) return
-    if (v.paused) { v.play(); setPlaying(true) }
+    if (v.paused) { v.play(); setPlaying(true); trackReelPlay() }
     else          { v.pause(); setPlaying(false) }
   }
 
@@ -61,6 +62,7 @@ export default function Reel() {
             ref={videoRef}
             src="/reel.mp4"
             className="w-full h-full object-cover"
+            poster="/reel-poster.webp"
             muted
             playsInline
             preload="metadata"

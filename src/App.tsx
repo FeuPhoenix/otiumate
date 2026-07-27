@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -15,12 +16,12 @@ import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 import BackToTop from './components/BackToTop'
 import Grain from './components/Grain'
+import ClientOnly from './components/ClientOnly'
 
 const SECTIONS = ['hero', 'about', 'work', 'team', 'stack', 'contact'] as const
 type SectionId = typeof SECTIONS[number]
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false)
   const [activeSection, setActiveSection] = useState<SectionId>('hero')
   const sectionRefs = useRef<Map<SectionId, HTMLElement>>(new Map())
 
@@ -29,7 +30,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (!loaded) return
     const observers: IntersectionObserver[] = []
 
     sectionRefs.current.forEach((el, id) => {
@@ -42,49 +42,53 @@ export default function App() {
     })
 
     return () => observers.forEach(o => o.disconnect())
-  }, [loaded])
+  }, [])
 
   return (
-    <>
-      <Preloader onComplete={() => setLoaded(true)} />
+    /* reducedMotion="user" makes every Framer animation below respect the OS
+       setting; the CSS-driven pieces are handled in index.css. */
+    <MotionConfig reducedMotion="user">
+      {/* Overlay, not a gate — the page beneath is always mounted so the
+          prerendered HTML contains real content. */}
+      <ClientOnly>
+        <Preloader />
+      </ClientOnly>
 
-      {loaded && (
-        <>
-          <Grain />
-          <CustomCursor />
-          <ScrollProgress />
+      <Grain />
+      <ClientOnly>
+        <CustomCursor />
+      </ClientOnly>
+      <ScrollProgress />
 
-          <div className="bg-brand-bg text-brand-text min-h-screen">
-            <Navbar activeSection={activeSection} />
-            <main>
-              <section id="hero" ref={el => registerSection('hero', el)}>
-                <Hero />
-              </section>
-              <section id="about" ref={el => registerSection('about', el)}>
-                <About />
-              </section>
-              <Reel />
-              <section id="work" ref={el => registerSection('work', el)}>
-                <WhatWeDo />
-                <Projects />
-              </section>
-              <section id="team" ref={el => registerSection('team', el)}>
-                <TeamSlideshow />
-              </section>
-              {/* <Testimonials /> */}
-              <section id="stack" ref={el => registerSection('stack', el)}>
-                <TechStack />
-              </section>
-              <section id="contact" ref={el => registerSection('contact', el)}>
-                <Contact />
-              </section>
-            </main>
-            <Footer />
-          </div>
+      <div className="bg-brand-bg text-brand-text min-h-screen">
+        <Navbar activeSection={activeSection} />
+        <main>
+          <section id="hero" ref={el => registerSection('hero', el)}>
+            <Hero />
+          </section>
+          <section id="about" ref={el => registerSection('about', el)}>
+            <About />
+          </section>
+          <Reel />
+          <section id="work" ref={el => registerSection('work', el)}>
+            <WhatWeDo />
+            <Projects />
+          </section>
+          <section id="team" ref={el => registerSection('team', el)}>
+            <TeamSlideshow />
+          </section>
+          {/* <Testimonials /> */}
+          <section id="stack" ref={el => registerSection('stack', el)}>
+            <TechStack />
+          </section>
+          <section id="contact" ref={el => registerSection('contact', el)}>
+            <Contact />
+          </section>
+        </main>
+        <Footer />
+      </div>
 
-          <BackToTop />
-        </>
-      )}
-    </>
+      <BackToTop />
+    </MotionConfig>
   )
 }

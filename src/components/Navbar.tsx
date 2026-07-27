@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trackCta } from '../lib/analytics'
 
 function EgyptTime() {
   const [time, setTime] = useState('')
@@ -92,6 +93,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={() => { if (link.label === 'Contact') trackCta('Contact', 'navbar') }}
                 className={`text-sm transition-colors duration-200 ${
                   link.label === 'Contact'
                     ? 'px-4 py-2 rounded-full bg-brand-primary text-white hover:bg-blue-500'
@@ -149,7 +151,10 @@ export default function Navbar({ activeSection }: NavbarProps) {
                     ? 'display-font px-8 py-3 rounded-full bg-brand-primary text-white text-3xl font-semibold hover:bg-blue-500 transition-colors mt-2'
                     : 'display-font text-3xl font-semibold text-white hover:text-brand-accent transition-colors'
                 }
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  if (link.label === 'Contact') trackCta('Contact', 'mobile-menu')
+                  setMenuOpen(false)
+                }}
               >
                 {link.label}
               </motion.a>

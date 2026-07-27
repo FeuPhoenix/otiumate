@@ -86,9 +86,17 @@ export default function Footer() {
           <p className="text-brand-muted text-xs font-mono">
             © {year} Otiumate. All rights reserved.
           </p>
-          <p className="text-brand-muted text-xs font-mono">
-            Built with React & Vite ✦
-          </p>
+          <div className="flex items-center gap-5">
+            <a
+              href="/privacy.html"
+              className="text-brand-muted text-xs font-mono hover:text-white transition-colors duration-200"
+            >
+              Privacy
+            </a>
+            <p className="text-brand-muted text-xs font-mono">
+              Built with React & Vite ✦
+            </p>
+          </div>
         </div>
       </div>
     </footer>

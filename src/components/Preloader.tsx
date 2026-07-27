@@ -1,47 +1,61 @@
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
-interface PreloaderProps {
-  onComplete: () => void
-}
-
-export default function Preloader({ onComplete }: PreloaderProps) {
+/**
+ * Full-screen intro overlay.
+ *
+ * It sits *on top of* the page rather than gating it: the content underneath
+ * is always mounted so the prerendered HTML contains the real page. Users who
+ * ask for reduced motion skip the sequence entirely.
+ */
+export default function Preloader() {
+  const reduceMotion = useReducedMotion()
   const [progress, setProgress] = useState(0)
-  const [phase, setPhase] = useState<'loading' | 'revealing'>('loading')
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
-    // Simulate loading progress
+    if (reduceMotion) {
+      setDone(true)
+      return
+    }
+
     const steps = [20, 45, 70, 90, 100]
     const delays = [150, 300, 250, 350, 400]
     let i = 0
+    let timer: ReturnType<typeof setTimeout>
 
     const tick = () => {
       if (i >= steps.length) {
-        setPhase('revealing')
-        setTimeout(onComplete, 900)
+        setDone(true)
         return
       }
       setProgress(steps[i])
       i++
-      setTimeout(tick, delays[i - 1] ?? 300)
+      timer = setTimeout(tick, delays[i - 1] ?? 300)
     }
 
-    const id = setTimeout(tick, 200)
-    return () => clearTimeout(id)
-  }, [onComplete])
+    timer = setTimeout(tick, 200)
+    return () => clearTimeout(timer)
+  }, [reduceMotion])
+
+  // Hold the page still until the overlay clears.
+  useEffect(() => {
+    if (done) return
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [done])
 
   const NAME = 'Otiumate'
 
   return (
     <AnimatePresence>
-      {phase === 'loading' && (
+      {!done && (
         <motion.div
           key="preloader"
           className="fixed inset-0 z-[9999] bg-brand-bg flex flex-col items-center justify-center"
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Logo / wordmark */}
           <motion.div
             className="mb-16 flex items-center gap-1"
             initial={{ opacity: 0, y: 16 }}
@@ -50,13 +64,12 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           >
             <img
               src="/logo.png"
-              alt="Otiumate"
+              alt=""
               className="w-14 h-14 object-contain"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
           </motion.div>
 
-          {/* Brand name with stagger */}
           <motion.div
             className="flex items-center overflow-hidden mb-12"
             initial="hidden"
@@ -77,7 +90,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             ))}
           </motion.div>
 
-          {/* Progress bar */}
           <div className="w-48 h-px bg-brand-border relative overflow-hidden">
             <motion.div
               className="absolute inset-y-0 left-0 bg-brand-primary"
@@ -86,7 +98,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             />
           </div>
 
-          {/* Progress number */}
           <motion.p
             className="section-label mt-4 tabular-nums"
             initial={{ opacity: 0 }}

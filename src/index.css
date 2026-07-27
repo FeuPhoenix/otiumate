@@ -149,3 +149,35 @@ body {
   80%  { transform: translate(3%,   35%)  }
   90%  { transform: translate(-10%, 10%)  }
 }
+
+/* ── Reduced motion ────────────────────────────────────────────────
+   Covers the CSS-driven motion: the grain shimmer, the two stack
+   marquees, and smooth anchor scrolling. Framer Motion is handled
+   separately by <MotionConfig reducedMotion="user"> in App.tsx, and the
+   hero particle field bails out in useParticles.                     */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* The marquees rely on an infinite transform; freeze them at the start
+     rather than letting them snap to the -50% end frame. */
+  .animate-marquee,
+  .animate-marquee-rev {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .grain-overlay {
+    animation: none !important;
+  }
+}

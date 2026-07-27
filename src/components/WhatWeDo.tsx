@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Lightbulb, Code2, Smartphone, Palette, BrainCircuit, LineChart } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 
-// TODO: Replace with real capabilities
 const capabilities = [
   {
     id: 'strategy',

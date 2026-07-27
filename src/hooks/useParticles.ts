@@ -40,6 +40,11 @@ export function useParticles(canvasRef: React.RefObject<HTMLCanvasElement>): voi
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    // Drifting, mouse-reactive particles are exactly the kind of ambient
+    // motion prefers-reduced-motion exists to suppress. Leave the canvas
+    // blank — the hero reads fine without it.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const isMobile = window.innerWidth < 768 || 'ontouchstart' in window
 
     const config: ParticleConfig = isMobile

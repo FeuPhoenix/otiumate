@@ -21,6 +21,6 @@ export const projects: Project[] = [
     description: 'Our debut AI-powered product — a photo-taking platform that turns phone selfies into professional studio-quality headshots using the best photo-generation models.',
     tags: ['React', 'TypeScript', 'Node.js'],
     link: 'https://sortak.net',
-    image: '/sortak.png',
+    image: '/sortak.webp',
   },
 ]

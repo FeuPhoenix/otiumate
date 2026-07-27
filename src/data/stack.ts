@@ -6,7 +6,6 @@ export interface TechItem {
   color: string
 }
 
-// TODO: Update with your actual tech stack
 export const stack: TechItem[] = [
   // Frontend
   { name: 'React',       category: 'Frontend', color: '#61DAFB' },

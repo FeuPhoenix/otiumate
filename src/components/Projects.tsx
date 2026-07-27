@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 import { projects, type ProjectCategory, type Project } from '../data/projects'
+import { trackProjectOpen } from '../lib/analytics'
 import ProjectModal from './ProjectModal'
 
 type Filter = 'All' | ProjectCategory
@@ -80,11 +81,38 @@ export default function Projects() {
                 key={project.id}
                 project={project}
                 index={i}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  trackProjectOpen(project.title, project.status)
+                  setSelectedProject(project)
+                }}
               />
             ))}
           </AnimatePresence>
         </div>
+
+        {filtered.length === 0 && (
+          <motion.div
+            key={`empty-${activeFilter}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="col-span-full border border-dashed border-brand-border rounded-2xl py-20 px-6 text-center"
+          >
+            <p className="display-font text-white text-lg mb-2">
+              Nothing here yet.
+            </p>
+            <p className="text-brand-muted text-sm max-w-sm mx-auto leading-relaxed mb-6">
+              We don't have a {activeFilter.toLowerCase()} project we can show publicly
+              yet. There's more in the works — talk to us about what you need.
+            </p>
+            <button
+              onClick={() => setActiveFilter('All')}
+              className="text-sm text-brand-primary hover:text-white transition-colors font-mono"
+            >
+              View all work
+            </button>
+          </motion.div>
+        )}
       </div>
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />

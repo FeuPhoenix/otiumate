@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useParticles } from '../hooks/useParticles'
+import { trackCta } from '../lib/analytics'
 
 const NAME = 'Otiumate'
 const TAGLINE_LINE1 = 'Turn AI potential'
@@ -133,6 +134,7 @@ export default function Hero() {
         >
           <motion.a
             href="#work"
+            onClick={() => trackCta('See Our Work', 'hero')}
             className="px-8 py-3.5 rounded-full bg-brand-primary text-white font-medium text-base shadow-glow-blue hover:shadow-glow-sm transition-shadow duration-300"
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
@@ -141,6 +143,7 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="#team"
+            onClick={() => trackCta('Meet the Team', 'hero')}
             className="px-8 py-3.5 rounded-full border border-brand-border text-brand-muted hover:border-brand-primary hover:text-white font-medium text-base transition-colors duration-200"
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}

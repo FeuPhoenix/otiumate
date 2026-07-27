@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Twitter, Instagram, CheckCircle2, Send } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
+import { trackContactSubmit, trackOutbound } from '../lib/analytics'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -21,6 +22,9 @@ export default function Contact() {
   const [formState, setFormState] = useState<FormState>('idle')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<Partial<typeof form>>({})
+  // Honeypot. Real users never see this field, so anything in it is a bot.
+  // `_gotcha` is also the name Formspree recognises server-side.
+  const [botTrap, setBotTrap] = useState('')
 
   const validate = () => {
     const errs: Partial<typeof form> = {}
@@ -34,23 +38,39 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const errs = validate()
-    if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs)
+      trackContactSubmit('invalid')
+      return
+    }
+
+    // Bot filled the hidden field — show the success state and send nothing,
+    // so the script gets no signal that it was caught.
+    if (botTrap.trim()) {
+      setFormState('success')
+      setForm({ name: '', email: '', message: '' })
+      return
+    }
+
     setErrors({})
     setFormState('submitting')
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message, _gotcha: botTrap }),
       })
       if (res.ok) {
         setFormState('success')
         setForm({ name: '', email: '', message: '' })
+        trackContactSubmit('success')
       } else {
         setFormState('error')
+        trackContactSubmit('error')
       }
     } catch {
       setFormState('error')
+      trackContactSubmit('error')
     }
   }
 
@@ -115,6 +135,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
+                    onClick={() => trackOutbound(s.label, s.href)}
                     className="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:border-brand-primary hover:text-brand-primary transition-colors"
                   >
                     <Icon size={16} />
@@ -159,6 +180,21 @@ export default function Contact() {
                   className="space-y-5"
                   noValidate
                 >
+                  {/* Honeypot — hidden from users and assistive tech alike.
+                      Kept out of the tab order so nobody can land on it. */}
+                  <div aria-hidden="true" className="absolute w-px h-px -m-px overflow-hidden opacity-0 pointer-events-none">
+                    <label htmlFor="company-website">Leave this field empty</label>
+                    <input
+                      id="company-website"
+                      type="text"
+                      name="_gotcha"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={botTrap}
+                      onChange={e => setBotTrap(e.target.value)}
+                    />
+                  </div>
+
                   <div>
                     <input
                       type="text"
