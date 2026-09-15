@@ -85,6 +85,22 @@ the video, export one at 720×1280 and save it over that file.
 npm run generate:poster
 ```
 
+### Regenerating the QR codes
+
+`public/qr-otiumate-light.png` and `public/qr-otiumate-dark.png` are 1200×1200
+QR codes with the logo knocked out of the centre. They encode
+`https://otiumate.com`; pass a different target to change it:
+
+```bash
+npm run generate:qr
+npm run generate:qr -- https://otiumate.com/#contact
+```
+
+Error correction is fixed at level H (30% recovery), which is what makes the
+centre knockout safe — it removes about 6% of the modules. If you edit the
+styling, re-check that both files still decode before shipping them; a QR that
+looks right and doesn't scan fails silently.
+
 ---
 
 ## Analytics

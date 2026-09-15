@@ -18,9 +18,9 @@ export const team: TeamMember[] = [
     id: 'member-amr',
     name: 'Amr',
     role: 'Co-Founder & Head of Design',
-    bio: 'Visionary builder with a passion for turning ambitious ideas into real products. Obsessed with the intersection of design, technology, and human behaviour. Always thinking about what comes next.',
+    bio: 'Leads design across every Otiumate product, from first sketch to shipped interface. Shapes how our products look, feel, and behave, making sure complex AI systems stay simple and intuitive for the people using them. Obsessed with the details that turn a working product into one people love.',
     photo: '/team-amr.webp',
-    details: [],
+    details: ['Doha, Qatar', '5+ years of experience'],
     socials: {
       linkedin: 'https://www.linkedin.com/in/amr-eldeeb-cs/',
       github: 'https://github.com/FeuPhoenix',
