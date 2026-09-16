@@ -16,11 +16,11 @@ export interface TeamMember {
 export const team: TeamMember[] = [
   {
     id: 'member-amr',
-    name: 'Amr',
-    role: 'Co-Founder & Head of Design',
+    name: 'Amr Eldeeb',
+    role: 'Co-Founder',
     bio: 'Leads design across every Otiumate product, from first sketch to shipped interface. Shapes how our products look, feel, and behave, making sure complex AI systems stay simple and intuitive for the people using them. Obsessed with the details that turn a working product into one people love.',
     photo: '/team-amr.webp',
-    details: ['Doha, Qatar', '5+ years of experience'],
+    details: ['5+ years of experience'],
     socials: {
       linkedin: 'https://www.linkedin.com/in/amr-eldeeb-cs/',
       github: 'https://github.com/FeuPhoenix',
@@ -29,26 +29,32 @@ export const team: TeamMember[] = [
   {
     id: 'member-beme',
     name: 'Beme',
-    role: 'Co-Founder & CTO',
+    role: 'Co-Founder',
     bio: 'Full-stack engineer who loves clean architecture and elegant solutions. Believes great code is invisible — it just works. Brings systems thinking to every problem.',
     photo: '/team-beme.webp',
     details: [],
   },
   {
     id: 'member-joe',
-    name: 'Joe',
+    name: 'Youssef Sadek',
     role: 'Co-Founder',
-    bio: 'Designer with a motion-first philosophy. Every screen should feel alive and intentional. Brings a sharp eye for detail and a deep understanding of what makes interfaces feel premium.',
+    bio: 'They thrive at the intersection of creative storytelling and deep data analytics, ensuring every campaign resonates emotionally while hitting hard business metrics.',
     photo: '/team-joe.webp',
     details: [],
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/youssef-sadek-687aa1419/',
+    },
   },
   {
     id: 'member-kesh',
-    name: 'Kesh',
-    role: 'Co-Founder & Head of Technical',
-    bio: 'Product strategist who thrives at the crossroads of user needs and business goals. Turns fuzzy problems into sharp roadmaps. Passionate about building things people actually want to use.',
+    name: 'Ahmed ELKeshawy',
+    role: 'Co-Founder',
+    bio: 'AI engineer and researcher specializing in computer vision, generative media and natural language pipelines, and edge systems. As a Co-Founder of Otiumate, he architects the end-to-end vision and image processing engines driving projects like Sortak. Combining production-grade engineering with academic rigor, he also leads applied R&D and instructs computer vision and systems modules at The British University in Egypt.',
     photo: '/team-kesh.webp',
-    details: [],
+    details: [
+      '4+ years in applied AI engineering, computer vision and natural language pipelines, and technical research',
+      'Wrote an architecture framework exploring artificial "sleep-phase consolidation" for AI brains — making him one of the few engineers whose theoretical systems might actually sleep more than he does',
+    ],
     socials: {
       linkedin: 'https://www.linkedin.com/in/ahmed-el-keshawy/',
       github: 'https://github.com/Ahmed-ELKeshawy',
@@ -56,19 +62,22 @@ export const team: TeamMember[] = [
   },
   {
     id: 'member-mokhles',
-    name: 'Mokhles',
+    name: 'Youssef Mokhles',
     role: 'Co-Founder',
     bio: 'Dedicated team member who brings energy and focus to every project. Committed to building products that make a real difference.',
     photo: '/team-mokhles.webp',
     details: [],
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/youssef-mokhles-63a834317/',
+    },
   },
   {
     id: 'member-seif',
-    name: 'Seif',
-    role: 'CEO & Co-Founder',
-    bio: 'Mechanical engineering graduate from AUC with a restless love for entrepreneurship, storytelling, and building ideas where technical rigor meets creative vision. I saw how AI was changing everything — and how many young people were excited, confused, and stuck, not knowing how to harness it. So I decided to build the kind of opportunity for others that AI created for me.\n\nWith no big money, no famous last name, and no ready-made blueprint, I started this with a dream and a team of people who think the same way but bring skills I don\'t have.\n\nMy goal is simple: to enable everyone who feels behind, and to help Egypt achieve its goal of becoming an AI and tech hub for the region — by building tools that put real power into people\'s hands.',
+    name: 'Seifeldeen Abdelgawad',
+    role: 'Co-Founder',
+    bio: 'Mechanical engineering graduate from AUC with a restless love for entrepreneurship, storytelling, and building ideas where technical rigor meets creative vision. I saw how AI was changing everything — and how many young people were excited, confused, and stuck, not knowing how to harness it. So I decided to build the kind of opportunity for others that AI created for me.\n\nMy goal is simple: to enable everyone who feels behind, and to help Egypt become an AI and tech hub for the region — by building tools that put real power into people\'s hands.',
     photo: '/team-seif.webp',
-    details: [],
+    details: ['He and his two siblings all share the same birthday — and they are not triplets'],
     socials: {
       linkedin: 'https://www.linkedin.com/in/seifeldeen-abdelgawad-25257b213/',
     },
