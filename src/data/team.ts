@@ -28,7 +28,7 @@ export const team: TeamMember[] = [
   },
   {
     id: 'member-beme',
-    name: 'Beme',
+    name: 'Yousef Ahmed',
     role: 'Co-Founder',
     bio: 'Full-stack engineer who loves clean architecture and elegant solutions. Believes great code is invisible — it just works. Brings systems thinking to every problem.',
     photo: '/team-beme.webp',
