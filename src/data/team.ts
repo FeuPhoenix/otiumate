@@ -20,7 +20,7 @@ export const team: TeamMember[] = [
     role: 'Co-Founder',
     bio: 'Leads design across every Otiumate product, from first sketch to shipped interface. Shapes how our products look, feel, and behave, making sure complex AI systems stay simple and intuitive for the people using them. Obsessed with the details that turn a working product into one people love.',
     photo: '/team-amr.webp',
-    details: ['5+ years of experience'],
+    details: [],
     socials: {
       linkedin: 'https://www.linkedin.com/in/amr-eldeeb-cs/',
       github: 'https://github.com/FeuPhoenix',
@@ -52,7 +52,6 @@ export const team: TeamMember[] = [
     bio: 'AI engineer and researcher specializing in computer vision, generative media and natural language pipelines, and edge systems. As a Co-Founder of Otiumate, he architects the end-to-end vision and image processing engines driving projects like Sortak. Combining production-grade engineering with academic rigor, he also leads applied R&D and instructs computer vision and systems modules at The British University in Egypt.',
     photo: '/team-kesh.webp',
     details: [
-      '4+ years in applied AI engineering, computer vision and natural language pipelines, and technical research',
       'Wrote an architecture framework exploring artificial "sleep-phase consolidation" for AI brains — making him one of the few engineers whose theoretical systems might actually sleep more than he does',
     ],
     socials: {
