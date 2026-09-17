@@ -1,9 +1,28 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Github, Linkedin, Twitter } from 'lucide-react'
 import { team } from '../data/team'
 
+/** Fisher-Yates, on a copy — never mutate the imported module data. */
+const shuffle = <T,>(items: readonly T[]): T[] => {
+  const out = [...items]
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[out[i], out[j]] = [out[j], out[i]]
+  }
+  return out
+}
+
+// Runs before paint in the browser, but useLayoutEffect warns during SSR, so
+// fall back to useEffect on the server (where it never runs anyway).
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+
 export default function TeamSlideshow() {
+  // Prerender and first hydration render the file order, so the server and
+  // client markup match; the shuffle lands immediately after, before paint.
+  const [order, setOrder] = useState<typeof team>(team)
+  useIsomorphicLayoutEffect(() => setOrder(shuffle(team)), [])
+
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState<1 | -1>(1)
   const [isPaused, setIsPaused] = useState(false)
@@ -14,8 +33,8 @@ export default function TeamSlideshow() {
     setCurrent(index)
   }, [])
 
-  const next = useCallback(() => goTo((current + 1) % team.length, 1),  [current, goTo])
-  const prev = useCallback(() => goTo((current - 1 + team.length) % team.length, -1), [current, goTo])
+  const next = useCallback(() => goTo((current + 1) % order.length, 1),  [current, goTo, order.length])
+  const prev = useCallback(() => goTo((current - 1 + order.length) % order.length, -1), [current, goTo, order.length])
 
   useEffect(() => {
     if (isPaused) return
@@ -42,7 +61,7 @@ export default function TeamSlideshow() {
     touchStart.current = null
   }
 
-  const member = team[current]
+  const member = order[current]
 
   const photoVariants = {
     enter:  { opacity: 0 },
@@ -67,8 +86,8 @@ export default function TeamSlideshow() {
         <ChevronLeft size={16} />
       </button>
       <div className="flex items-center gap-2">
-        {team.map((_, i) => (
-          <button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} aria-label={`Go to ${team[i].name}`}>
+        {order.map((_, i) => (
+          <button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} aria-label={`Go to ${order[i].name}`}>
             <span className={`block rounded-full transition-all duration-300 ${
               i === current ? 'w-5 h-1.5 bg-brand-primary' : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
             }`} />
@@ -134,7 +153,7 @@ export default function TeamSlideshow() {
         <div className="absolute top-10 left-6 right-6 flex justify-between z-10">
           <p className="section-label">05 / The Team</p>
           <p className="section-label tabular-nums">
-            {String(current + 1).padStart(2, '0')} — {String(team.length).padStart(2, '0')}
+            {String(current + 1).padStart(2, '0')} — {String(order.length).padStart(2, '0')}
           </p>
         </div>
 
@@ -233,7 +252,7 @@ export default function TeamSlideshow() {
           {/* Slide counter */}
           <div className="absolute top-10 right-12">
             <p className="section-label tabular-nums">
-              {String(current + 1).padStart(2, '0')} — {String(team.length).padStart(2, '0')}
+              {String(current + 1).padStart(2, '0')} — {String(order.length).padStart(2, '0')}
             </p>
           </div>
 
