@@ -66,6 +66,23 @@ WebP, and deletes the original. Then point the `photo` / `image` field in
 > Camera-resolution PNGs are 7–8 MB each; optimized they land around 150 KB.
 > Don't reference an unoptimized file directly.
 
+### Framing a team photo
+
+The team slideshow renders every photo with `object-cover object-top` in one
+panel, so how large a face looks is decided entirely by how the photo was
+cropped. A tight head-and-shoulders shot comes out as a giant face next to the
+looser shots the rest of the team sent in. Don't fix that by stretching the
+image — pad it out to the house framing:
+
+```bash
+node scripts/frame-team-photo.mjs <source-photo> public/team-<name>.webp
+```
+
+It finds the head, widens the canvas until the head is 33% of the frame (what
+the existing photos measure), and writes a 1400×1738 WebP — the same dimensions
+as the rest. Use this instead of `optimize:images` for a tight headshot; the
+output is already downscaled and encoded.
+
 ### Regenerating the social card
 
 `public/og-image.png` (1200×630) is generated from the brand colours and
