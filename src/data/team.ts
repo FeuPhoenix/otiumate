@@ -33,6 +33,10 @@ export const team: TeamMember[] = [
     bio: 'Full-stack engineer who loves clean architecture and elegant solutions. Believes great code is invisible — it just works. Brings systems thinking to every problem.',
     photo: '/team-beme.webp',
     details: [],
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/youssef-el-kady-4dev/',
+      github: 'https://github.com/Elkady4Dev',
+    },
   },
   {
     id: 'member-joe',
