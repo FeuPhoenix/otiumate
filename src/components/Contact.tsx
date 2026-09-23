@@ -6,7 +6,7 @@ import { trackContactSubmit, trackOutbound } from '../lib/analytics'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-const CONTACT_EMAIL = 'otiumate@gmail.com'
+const CONTACT_EMAIL = 'info@otiumate.com'
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xreonqnd'
 
